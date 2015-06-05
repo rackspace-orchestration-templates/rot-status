@@ -15,9 +15,9 @@ func statusPage(w http.ResponseWriter, req *http.Request) {
 
 	if err != nil {
 		// Write out status unknown
-		w.Write([]byte(err))
+		w.Write(err.String())
 	} else {
-		w.Write([]byte(repos))
+		w.Write(repos)
         }
 }
 
