@@ -2,7 +2,7 @@ package main
 
 import (
 	"io"
-	"fmt"
+	"log"
 	"net/http"
 	"github.com/google/go-github/github"
 )
@@ -30,8 +30,9 @@ func statusPage(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-	// Serve up the index page
 	http.HandleFunc("/", statusPage)
-	fmt.Println("Starting HTTP Server ...")
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
 }
