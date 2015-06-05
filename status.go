@@ -25,8 +25,7 @@ func statusPage(w http.ResponseWriter, req *http.Request) {
 		io.WriteString(w, err.Error())
 	} else {
 		for _, repo := range repos {
-			io.WriteString(w, *repo.Name)
-			io.WriteString(w, "\n")
+			io.WriteString(w, repo.Name)
 		}
         }
 }
