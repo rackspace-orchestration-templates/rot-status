@@ -9,6 +9,6 @@ func main() {
 	fmt.Println("Listening on :8080 ...")
 }
 
-func someFunc(w http.ResponseWriter, req *http.Request) {
+func statusPage(w http.ResponseWriter, req *http.Request) {
 	w.Write([]byte("Status Unknown"))
 }
