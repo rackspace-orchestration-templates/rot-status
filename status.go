@@ -21,7 +21,8 @@ func statusPage(w http.ResponseWriter, req *http.Request) {
 		w.Write([]byte(err.Error()))
 	} else {
 		for _, repo := range repos {
-			w.Write([]byte(*repo.Name, "\n"))
+			w.Write([]byte(*repo.Name))
+			w.Write([]byte("\n"))
 		}
         }
 }
