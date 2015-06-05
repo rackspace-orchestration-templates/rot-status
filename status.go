@@ -1,12 +1,10 @@
 package main
 
-import "fmt"
 import "net/http"
 
 func main() {
 	http.HandleFunc("/", statusPage)
 	http.ListenAndServe(":8080", nil)
-	fmt.Println("Listening on :8080 ...")
 }
 
 func statusPage(w http.ResponseWriter, req *http.Request) {
