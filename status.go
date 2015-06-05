@@ -7,7 +7,10 @@ import "github.com/google/go-github/github"
 func statusPage(w http.ResponseWriter, req *http.Request) {
 	// Connect to Github and list public repos for rot
 	client := github.NewClient(nil)
-	opt := &github.RepositoryListByOrgOptions{Type: "public"}
+	opt := &github.RepositoryListByOrgOptions{
+		Type: "public",
+		ListOptions: github.ListOptions{PerPage: 50},
+	}
 	repos, _, err := client.Repositories.ListByOrg(
 		"rackspace-orchestration-templates",
 		opt,
