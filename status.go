@@ -15,9 +15,11 @@ func statusPage(w http.ResponseWriter, req *http.Request) {
 
 	if err != nil {
 		// Write out status unknown
-		w.Write(err.String())
+		w.Write([]byte(err.Error()))
 	} else {
-		w.Write(repos)
+		for _, repo := range repos {
+			w.Write([]byte(repo.Name))
+		}
         }
 }
 
