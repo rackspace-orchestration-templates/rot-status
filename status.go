@@ -1,8 +1,11 @@
 package main
 
-import "fmt"
-import "net/http"
-import "github.com/google/go-github/github"
+import (
+	"io"
+	"fmt"
+	"net/http"
+	"github.com/google/go-github/github"
+)
 
 func statusPage(w http.ResponseWriter, req *http.Request) {
 	// Connect to Github and list public repos for rot
@@ -18,11 +21,10 @@ func statusPage(w http.ResponseWriter, req *http.Request) {
 
 	if err != nil {
 		// Write out status unknown
-		w.Write([]byte(err.Error()))
+		io.WriteString(w, err.Error())
 	} else {
 		for _, repo := range repos {
-			w.Write([]byte(*repo.Name))
-			w.Write([]byte("\n"))
+			io.WriteString(w, *repo.Name)
 		}
         }
 }
