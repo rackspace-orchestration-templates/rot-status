@@ -8,9 +8,17 @@ func statusPage(w http.ResponseWriter, req *http.Request) {
 	// Connect to Github and list public repos for rot
 	client := github.NewClient(nil)
 	opt := &github.RepositoryListByOrgOptions{Type: "public"}
-	repos, _, err := client.Repositories.ListByOrg("rackspace-orchestration-templates", opt)
-	// Write out status unknown
-	w.Write([]byte("Status Unknown"))
+	repos, _, err := client.Repositories.ListByOrg(
+		"rackspace-orchestration-templates",
+		opt,
+	)
+
+	if err != nil {
+		// Write out status unknown
+		w.Write([]byte(err))
+	} else {
+		w.Write([]byte(repos))
+        }
 }
 
 func main() {
